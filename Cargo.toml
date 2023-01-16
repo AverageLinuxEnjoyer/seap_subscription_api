@@ -21,3 +21,4 @@ time = { version = "0.3.17", features = [
     "serde-well-known",
 ] }
 regex = "1.7.0"
+axum-macros = "0.3.0"

@@ -1,4 +1,4 @@
-use anyhow::Error;
+use crate::models::{subscription, ID};
 use axum::{
     extract::{Path, State},
     http::StatusCode,
@@ -7,24 +7,16 @@ use axum::{
 use serde_json::{json, Value};
 use sqlx::PgPool;
 
-use crate::models::Subscription;
-
 pub async fn delete_subscription(
     State(pool): State<PgPool>,
-    Path(id): Path<u32>,
+    Path(id): Path<ID>,
 ) -> (StatusCode, Json<Value>) {
-    match Subscription::delete(&pool, id).await {
-        Ok(maybe_sub) => match maybe_sub {
-            Some(sub) => match serde_json::to_value(sub) {
-                Ok(val) => (StatusCode::ACCEPTED, Json(val)),
-                Err(err) => (
-                    StatusCode::UNPROCESSABLE_ENTITY,
-                    Json(json!({"Error": err.to_string()})),
-                ),
-            },
-            None => (
-                StatusCode::NOT_FOUND,
-                Json(json!({"Error": "No subscription found with this id."})),
+    match subscription::delete(&pool, id).await {
+        Ok(sub) => match serde_json::to_value(sub) {
+            Ok(val) => (StatusCode::ACCEPTED, Json(val)),
+            Err(err) => (
+                StatusCode::UNPROCESSABLE_ENTITY,
+                Json(json!({"Error": err.to_string()})),
             ),
         },
         Err(err) => (
