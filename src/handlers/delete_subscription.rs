@@ -1,4 +1,4 @@
-use crate::models::{subscription, ID};
+use crate::models::subscription;
 use axum::{
     extract::{Path, State},
     http::StatusCode,
@@ -9,7 +9,7 @@ use sqlx::PgPool;
 
 pub async fn delete_subscription(
     State(pool): State<PgPool>,
-    Path(id): Path<ID>,
+    Path(id): Path<usize>,
 ) -> (StatusCode, Json<Value>) {
     match subscription::delete(&pool, id).await {
         Ok(sub) => match serde_json::to_value(sub) {

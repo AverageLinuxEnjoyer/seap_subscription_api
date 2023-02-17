@@ -1,19 +1,15 @@
 use crate::models::subscription;
 use crate::models::Subscription;
-use crate::models::ID;
 use axum::extract::Path;
 use axum::{extract::State, http::StatusCode, Json};
 use serde_json::{json, Value};
 use sqlx::PgPool;
-use subscription::NoID;
 
 pub async fn update_subscription(
     State(pool): State<PgPool>,
-    Path(id): Path<ID>,
-    Json(sub): Json<Subscription<NoID>>,
+    Path(id): Path<usize>,
+    Json(sub): Json<Subscription>,
 ) -> (StatusCode, Json<Value>) {
-    let sub = sub.with_id(id);
-
     match subscription::update(&pool, sub).await {
         Ok(sub) => match serde_json::to_value(sub) {
             Ok(val) => (StatusCode::ACCEPTED, Json(val)),

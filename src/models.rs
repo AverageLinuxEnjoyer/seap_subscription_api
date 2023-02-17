@@ -1,7 +1,6 @@
 pub mod subscription;
 pub mod user;
 
-pub use subscription::NoID;
+// reexports
 pub use subscription::Subscription;
-pub use subscription::ID;
 pub use user::User;

@@ -13,24 +13,6 @@ pub struct Email {
 }
 
 impl Email {
-    /// Checks if the email is valid.
-    ///
-    /// # Examples
-    /// ```rust
-    /// use seap_subscription_api::utils::Email;
-    ///
-    /// // Valid email
-    /// let email = Email {
-    ///     email: "test@gmail.com".to_string(),
-    /// };
-    /// assert_eq!(email.is_valid(), true);
-    ///
-    /// // Invalid email
-    /// let email = Email {
-    ///    email: "test@gmail".to_string(),
-    /// };
-    /// assert_eq!(email.is_valid(), false);
-
     pub fn is_valid(&self) -> bool {
         let email = self.email.trim();
 

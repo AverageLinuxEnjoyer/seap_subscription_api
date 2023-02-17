@@ -1,5 +1,5 @@
 use crate::{
-    models::{user, ID},
+    models::user,
     utils::{Email, Pagination},
 };
 use axum::{
@@ -12,7 +12,7 @@ use sqlx::PgPool;
 
 pub async fn get_user_by_id(
     State(pool): State<PgPool>,
-    Path(id): Path<ID>,
+    Path(id): Path<usize>,
 ) -> (StatusCode, Json<Value>) {
     match user::get_one(&pool, id).await {
         Ok(user) => match serde_json::to_value(user) {

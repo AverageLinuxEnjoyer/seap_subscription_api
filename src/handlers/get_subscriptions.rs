@@ -1,5 +1,5 @@
 use crate::{
-    models::{subscription, ID},
+    models::subscription,
     utils::{Email, Pagination},
 };
 use axum::{
@@ -12,7 +12,7 @@ use sqlx::PgPool;
 
 pub async fn get_subscription_by_id(
     State(pool): State<PgPool>,
-    Path(id): Path<ID>,
+    Path(id): Path<usize>,
 ) -> (StatusCode, Json<Value>) {
     match subscription::get_one(&pool, id).await {
         Ok(sub) => match serde_json::to_value(sub) {

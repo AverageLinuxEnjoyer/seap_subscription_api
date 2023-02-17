@@ -1,0 +1,610 @@
+{
+  "db": "PostgreSQL",
+  "217b2cf1c0af912001d8d534a202a3a946a694f74402456eab9f505a0e9d57f1": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id!",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "id_user!",
+          "ordinal": 1,
+          "type_info": "Int4"
+        },
+        {
+          "name": "min_price",
+          "ordinal": 2,
+          "type_info": "Int4"
+        },
+        {
+          "name": "max_price",
+          "ordinal": 3,
+          "type_info": "Int4"
+        },
+        {
+          "name": "title_keywords",
+          "ordinal": 4,
+          "type_info": "VarcharArray"
+        },
+        {
+          "name": "desc_keywords",
+          "ordinal": 5,
+          "type_info": "VarcharArray"
+        },
+        {
+          "name": "additional_info_keywords",
+          "ordinal": 6,
+          "type_info": "VarcharArray"
+        }
+      ],
+      "nullable": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "parameters": {
+        "Left": [
+          "Int4"
+        ]
+      }
+    },
+    "query": "SELECT\n                id as \"id!\", \n                id_user as \"id_user!\",\n                min_price, \n                max_price, \n                title_keywords,\n                desc_keywords,\n                additional_info_keywords\n            FROM get_subscriptions() WHERE id=$1"
+  },
+  "33e55ccaf0433338bc04bd99465158d9331da4b67a674f1dbef65f08b5a5730e": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id!",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "id_user!",
+          "ordinal": 1,
+          "type_info": "Int4"
+        },
+        {
+          "name": "min_price",
+          "ordinal": 2,
+          "type_info": "Int4"
+        },
+        {
+          "name": "max_price",
+          "ordinal": 3,
+          "type_info": "Int4"
+        },
+        {
+          "name": "title_keywords",
+          "ordinal": 4,
+          "type_info": "VarcharArray"
+        },
+        {
+          "name": "desc_keywords",
+          "ordinal": 5,
+          "type_info": "VarcharArray"
+        },
+        {
+          "name": "additional_info_keywords",
+          "ordinal": 6,
+          "type_info": "VarcharArray"
+        }
+      ],
+      "nullable": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT\n                id as \"id!\", \n                id_user as \"id_user!\",\n                min_price, \n                max_price, \n                title_keywords,\n                desc_keywords,\n                additional_info_keywords\n            FROM get_subscriptions()\n            WHERE id_user IN \n                (SELECT id FROM users WHERE email = $1)"
+  },
+  "62c9a0327438d32b44351cac099262797a749f3d45bf521d18b5838a6030e5b1": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id!",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "email!",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "created_at!",
+          "ordinal": 2,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        null,
+        null,
+        null
+      ],
+      "parameters": {
+        "Left": [
+          "Varchar"
+        ]
+      }
+    },
+    "query": "\n            SELECT\n                id as \"id!\",\n                email as \"email!\",\n                created_at as \"created_at!\"\n            FROM delete_user_by_email($1) \n        "
+  },
+  "719fdbd66da225fe775bc2b11fa545aadfadc6dd45c933719e24ee046fc6a308": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id!",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "id_user!",
+          "ordinal": 1,
+          "type_info": "Int4"
+        },
+        {
+          "name": "min_price",
+          "ordinal": 2,
+          "type_info": "Int4"
+        },
+        {
+          "name": "max_price",
+          "ordinal": 3,
+          "type_info": "Int4"
+        },
+        {
+          "name": "title_keywords",
+          "ordinal": 4,
+          "type_info": "VarcharArray"
+        },
+        {
+          "name": "desc_keywords",
+          "ordinal": 5,
+          "type_info": "VarcharArray"
+        },
+        {
+          "name": "additional_info_keywords",
+          "ordinal": 6,
+          "type_info": "VarcharArray"
+        }
+      ],
+      "nullable": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "parameters": {
+        "Left": [
+          "Int4"
+        ]
+      }
+    },
+    "query": "SELECT \n                id as \"id!\", \n                id_user as \"id_user!\",\n                min_price, \n                max_price, \n                title_keywords,\n                desc_keywords,\n                additional_info_keywords \n            FROM delete_subscription($1)"
+  },
+  "7c9ddc12a31bc9ea7a1bc0a2d4c73cfe3bcc25aa8f5864d349750889ea0177d1": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id!",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "id_user!",
+          "ordinal": 1,
+          "type_info": "Int4"
+        },
+        {
+          "name": "min_price",
+          "ordinal": 2,
+          "type_info": "Int4"
+        },
+        {
+          "name": "max_price",
+          "ordinal": 3,
+          "type_info": "Int4"
+        },
+        {
+          "name": "title_keywords",
+          "ordinal": 4,
+          "type_info": "VarcharArray"
+        },
+        {
+          "name": "desc_keywords",
+          "ordinal": 5,
+          "type_info": "VarcharArray"
+        },
+        {
+          "name": "additional_info_keywords",
+          "ordinal": 6,
+          "type_info": "VarcharArray"
+        }
+      ],
+      "nullable": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "parameters": {
+        "Left": [
+          "Int8",
+          "Int8"
+        ]
+      }
+    },
+    "query": "SELECT\n                id as \"id!\", \n                id_user as \"id_user!\",\n                min_price, \n                max_price, \n                title_keywords,\n                desc_keywords,\n                additional_info_keywords\n            FROM get_subscriptions()\n            LIMIT $1\n            OFFSET $2"
+  },
+  "7f081702b0f89e6719800ac526872aea21e01b602d647f959661b9cb7072247f": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "email",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "created_at",
+          "ordinal": 2,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Int4"
+        ]
+      }
+    },
+    "query": "\n            SELECT * FROM users WHERE id = $1\n        "
+  },
+  "9d0d3cb8f149b0e6dcfa48a53cde300aab272a1ea07fea955b084fc2225874d5": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id!",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "email!",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "created_at!",
+          "ordinal": 2,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        null,
+        null,
+        null
+      ],
+      "parameters": {
+        "Left": [
+          "Int4"
+        ]
+      }
+    },
+    "query": "\n            SELECT\n                id as \"id!\",\n                email as \"email!\",\n                created_at as \"created_at!\"\n            FROM delete_user($1) \n        "
+  },
+  "a68d3d2d8a0a8080e8d55dd728b0f7a67066d59a0809c540e6315294da6c8ac3": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "email",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "created_at",
+          "ordinal": 2,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Int8",
+          "Int8"
+        ]
+      }
+    },
+    "query": "SELECT * FROM users LIMIT $1 OFFSET $2"
+  },
+  "caa07ff8a38a9193382b1e7bb0367930ef550169b54f4f424d3a4272396ad38c": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id!",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "email!",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "created_at!",
+          "ordinal": 2,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        null,
+        null,
+        null
+      ],
+      "parameters": {
+        "Left": [
+          "Varchar"
+        ]
+      }
+    },
+    "query": "\n            SELECT\n                id as \"id!\",\n                email as \"email!\",\n                created_at as \"created_at!\"\n            FROM create_or_return_user($1)"
+  },
+  "cfd60d1bbbaba66fc8dedafab8b07ce8e92c96e5da44d3a0f470e6eea0b215e2": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id!",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "id_user!",
+          "ordinal": 1,
+          "type_info": "Int4"
+        },
+        {
+          "name": "min_price",
+          "ordinal": 2,
+          "type_info": "Int4"
+        },
+        {
+          "name": "max_price",
+          "ordinal": 3,
+          "type_info": "Int4"
+        },
+        {
+          "name": "title_keywords",
+          "ordinal": 4,
+          "type_info": "VarcharArray"
+        },
+        {
+          "name": "desc_keywords",
+          "ordinal": 5,
+          "type_info": "VarcharArray"
+        },
+        {
+          "name": "additional_info_keywords",
+          "ordinal": 6,
+          "type_info": "VarcharArray"
+        }
+      ],
+      "nullable": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Int4",
+          "Int4",
+          "TextArray",
+          "TextArray",
+          "TextArray"
+        ]
+      }
+    },
+    "query": "\n            SELECT\n                id as \"id!\", \n                id_user as \"id_user!\",\n                min_price, \n                max_price, \n                title_keywords,\n                desc_keywords,\n                additional_info_keywords\n            FROM create_subscription($1,$2,$3,$4,$5,$6)"
+  },
+  "e6bc12d6c72215c867f329aba10c224c5b4c12180cdd8041c8dd692e4a812deb": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id!",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "email!",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "created_at!",
+          "ordinal": 2,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        null,
+        null,
+        null
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Varchar",
+          "Timestamptz"
+        ]
+      }
+    },
+    "query": "\n            SELECT\n                id as \"id!\",\n                email as \"email!\",\n                created_at as \"created_at!\"\n            FROM update_user($1, $2, $3) \n        "
+  },
+  "f3f58600e971f1be6cbe206bba24f77769f54c6230e28f5b3dc719b869d9cb3f": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "email",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "created_at",
+          "ordinal": 2,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT * FROM users WHERE email = $1"
+  },
+  "f484017998e1af31aa7b9b15683cf450d4dc61aad5a872da3e5c5d4396a0cc6a": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id!",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "id_user!",
+          "ordinal": 1,
+          "type_info": "Int4"
+        },
+        {
+          "name": "min_price",
+          "ordinal": 2,
+          "type_info": "Int4"
+        },
+        {
+          "name": "max_price",
+          "ordinal": 3,
+          "type_info": "Int4"
+        },
+        {
+          "name": "title_keywords",
+          "ordinal": 4,
+          "type_info": "VarcharArray"
+        },
+        {
+          "name": "desc_keywords",
+          "ordinal": 5,
+          "type_info": "VarcharArray"
+        },
+        {
+          "name": "additional_info_keywords",
+          "ordinal": 6,
+          "type_info": "VarcharArray"
+        }
+      ],
+      "nullable": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Int4",
+          "Int4",
+          "Int4",
+          "TextArray",
+          "TextArray",
+          "TextArray"
+        ]
+      }
+    },
+    "query": "SELECT\n                id as \"id!\", \n                id_user as \"id_user!\",\n                min_price, \n                max_price, \n                title_keywords,\n                desc_keywords,\n                additional_info_keywords\n            FROM update_subscription($1,$2,$3,$4,$5,$6,$7)\n            "
+  },
+  "f7b6ceeefcb64421e3fdc97f84c2e7a5fb848c0a4a8f3a0256b159af399ac83c": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id!",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "email!",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "created_at!",
+          "ordinal": 2,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        null,
+        null,
+        null
+      ],
+      "parameters": {
+        "Left": [
+          "Varchar"
+        ]
+      }
+    },
+    "query": "\n            SELECT\n                id as \"id!\",\n                email as \"email!\",\n                created_at as \"created_at!\"\n            FROM create_user($1)"
+  }
+}

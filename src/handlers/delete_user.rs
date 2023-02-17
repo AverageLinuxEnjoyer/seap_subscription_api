@@ -6,11 +6,11 @@ use axum::{
 use serde_json::{json, Value};
 use sqlx::PgPool;
 
-use crate::models::{user, ID};
+use crate::models::user;
 
 pub async fn delete_user(
     State(pool): State<PgPool>,
-    Path(id): Path<ID>,
+    Path(id): Path<usize>,
 ) -> (StatusCode, Json<Value>) {
     match user::delete(&pool, id).await {
         Ok(user) => match serde_json::to_value(user) {

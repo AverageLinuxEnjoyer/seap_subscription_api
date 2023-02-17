@@ -24,6 +24,22 @@ BEGIN
 END;
 $$;
 
+CREATE OR REPLACE FUNCTION create_or_return_user(IN in_email VARCHAR(255))
+RETURNS TABLE (
+    id INT,
+    email VARCHAR(255),
+    created_at TIMESTAMPTZ
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RETURN QUERY SELECT * FROM users WHERE users.email = in_email;
+    IF NOT FOUND THEN
+        RETURN QUERY INSERT INTO users (email) VALUES (in_email) RETURNING *;
+    END IF;
+END;
+$$;
+
 CREATE OR REPLACE FUNCTION update_user(
     IN in_id INT,
     IN in_new_email VARCHAR(255),
