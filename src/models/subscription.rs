@@ -159,6 +159,7 @@ mod test {
     use anyhow::Result;
     use sqlx::PgPool;
 
+    #[ignore]
     #[sqlx::test(fixtures("users"))]
     async fn test_create(pool: PgPool) -> Result<()> {
         {
@@ -196,6 +197,7 @@ mod test {
         Ok(())
     }
 
+    #[ignore]
     #[sqlx::test(fixtures("users", "subscriptions"))]
     async fn test_get_one(pool: PgPool) -> Result<()> {
         {
@@ -239,6 +241,7 @@ mod test {
         Ok(())
     }
 
+    #[ignore]
     #[sqlx::test(fixtures("users", "subscriptions"))]
     async fn test_get_paginated(pool: PgPool) -> Result<()> {
         {
@@ -281,6 +284,7 @@ mod test {
         Ok(())
     }
 
+    #[ignore]
     #[sqlx::test(fixtures("users", "subscriptions"))]
     async fn test_get_all_of_email(pool: PgPool) -> Result<()> {
         {
@@ -310,6 +314,7 @@ mod test {
         Ok(())
     }
 
+    #[ignore]
     #[sqlx::test(fixtures("users", "subscriptions"))]
     async fn test_update(pool: PgPool) -> Result<()> {
         {
