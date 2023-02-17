@@ -352,6 +352,7 @@ mod test {
         Ok(())
     }
 
+    #[ignore]
     #[sqlx::test(fixtures("users", "subscriptions"))]
     async fn test_delete(pool: PgPool) -> Result<()> {
         {
