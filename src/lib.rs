@@ -13,10 +13,10 @@ use sync_wrapper::SyncWrapper;
 use tower_http::cors::{AllowHeaders, Any, CorsLayer};
 
 #[shuttle_service::main]
-async fn axum(/* #[shuttle_shared_db::Postgres] pool: PgPool */) -> shuttle_service::ShuttleAxum {
-    let pool = PgPool::connect("postgres://postgres:postgres@localhost/seap_subscriptions")
-        .await
-        .expect("Couldn't connect to the database.");
+async fn axum(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_service::ShuttleAxum {
+    // let pool = PgPool::connect("postgres://postgres:postgres@localhost/seap_subscriptions")
+    //     .await
+    //     .expect("Couldn't connect to the database.");
 
     pool.execute(include_str!("../migrations/20230203192555_users.sql"))
         .await
