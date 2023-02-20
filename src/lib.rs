@@ -3,14 +3,13 @@ pub mod models;
 pub mod utils;
 
 use axum::{
-    http::Method,
     routing::{delete, get, post, put},
     Router,
 };
 use shuttle_service::tracing::info;
 use sqlx::{query, Executor, PgPool};
 use sync_wrapper::SyncWrapper;
-use tower_http::cors::{AllowHeaders, Any, CorsLayer};
+use tower_http::cors::{Any, CorsLayer};
 
 #[shuttle_service::main]
 async fn axum(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_service::ShuttleAxum {
@@ -30,11 +29,6 @@ async fn axum(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_service::S
 
     info!("Succesfully loaded schema into db.");
 
-    let cors = CorsLayer::new()
-        .allow_origin(Any)
-        .allow_methods(vec![Method::GET, Method::POST, Method::PUT, Method::DELETE])
-        .allow_headers(AllowHeaders::any());
-
     let router = Router::new()
         .route("/subscriptions", post(handlers::create_subscription))
         .route("/subscriptions", get(handlers::get_subscriptions))
@@ -48,7 +42,7 @@ async fn axum(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_service::S
         .route("/users/:id", put(handlers::update_user))
         .route("/users/:id", delete(handlers::delete_user))
         .with_state(pool)
-        .layer(cors);
+        .layer(CorsLayer::permissive());
 
     let sync_wrapper = SyncWrapper::new(router);
 
